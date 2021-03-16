@@ -10,6 +10,8 @@ namespace GRAPHQLAPI_Examen.GraphQL
 		public NorthwindSchema(IServiceProvider serviceProvider) : base(serviceProvider)
 		{
 			Query = serviceProvider.GetRequiredService<NorthwindQuery>();
+			//Mutation
+			//Subscription			
 		}
 	}
 }

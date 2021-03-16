@@ -5,6 +5,7 @@ using GRAPHQLAPI_Examen.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GRAPHQLAPI_Examen.GraphQL
@@ -19,9 +20,12 @@ namespace GRAPHQLAPI_Examen.GraphQL
 				);
 			FieldAsync<ProductType>(
 				"product",
-				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }),
+				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> 
+					{ Name = "id" }),
 				resolve: async context =>
 				{
+					//var user = (ClaimsPrincipal)context.UserContext;  Check users claims to authorize
+					
 					var id = context.GetArgument<int>("id");
 					return await productRepository.GetOneProduct(id);
 				}

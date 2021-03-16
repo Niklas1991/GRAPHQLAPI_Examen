@@ -1,6 +1,8 @@
-﻿using GraphQL.Language.AST;
+﻿using GraphQL.DataLoader;
+using GraphQL.Language.AST;
 using GraphQL.Types;
 using GRAPHQLAPI_Examen.Models;
+using GRAPHQLAPI_Examen.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace GRAPHQLAPI_Examen.GraphQL.Types
 {
 	public class ProductType: ObjectGraphType<Product>
 	{
-		public ProductType()
+		public ProductType(ProductReviewRepository reviewRepository)
 		{
 			Name = "Products";
 			Field(t => t.ProductId, type: typeof(IdGraphType));
@@ -20,7 +22,11 @@ namespace GRAPHQLAPI_Examen.GraphQL.Types
 			Field(t => t.UnitsInStock, nullable: true, type: typeof(ShortGraphType));
 			Field(t => t.UnitsOnOrder, nullable: true, type: typeof(ShortGraphType));
 			Field(t => t.ReorderLevel, nullable: true, type: typeof(ShortGraphType));
-			Field(t => t.Discontinued, type: typeof(BooleanGraphType));			
+			Field(t => t.Discontinued, type: typeof(BooleanGraphType));
+			Field<ListGraphType<ProductReviewType>>(
+				"reviews",
+				resolve: context => reviewRepository.GetForProduct(context.Source.ProductId)
+				);
 		}
 	}
 }

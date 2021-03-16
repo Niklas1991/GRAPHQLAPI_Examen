@@ -47,5 +47,6 @@ namespace GRAPHQLAPI_Examen.Models
         public virtual Supplier Supplier { get; set; }
         [InverseProperty(nameof(OrderDetail.Product))]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public List<ProductReview> ProductReviews { get; set; }
     }
 }

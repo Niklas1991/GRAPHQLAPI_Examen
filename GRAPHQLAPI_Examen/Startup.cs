@@ -31,6 +31,7 @@ namespace GRAPHQLAPI_Examen
 				options.UseSqlServer(Configuration["ConnectionStrings:Database"]), ServiceLifetime.Transient);
 			services.AddScoped<ProductRepository>();
 			services.AddScoped<EmployeeRepository>();
+			services.AddScoped<ProductReviewRepository>();
 
 			services.AddScoped<NorthwindSchema>();
 

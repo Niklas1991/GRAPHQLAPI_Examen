@@ -34,6 +34,7 @@ namespace GRAPHQLAPI_Examen.Models
         public virtual DbSet<OrderSubtotal> OrderSubtotals { get; set; }
         public virtual DbSet<OrdersQry> OrdersQries { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductReview> ProductReviews { get; set; }
         public virtual DbSet<ProductSalesFor1997> ProductSalesFor1997s { get; set; }
         public virtual DbSet<ProductsAboveAveragePrice> ProductsAboveAveragePrices { get; set; }
         public virtual DbSet<ProductsByCategory> ProductsByCategories { get; set; }
